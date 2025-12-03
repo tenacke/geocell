@@ -1,0 +1,3 @@
+[submodule "src/h3lib"]
+	path = src/h3lib
+	url = https://github.com/tenacke/h3.git
