@@ -1,18 +1,24 @@
 [project]
 name = "geocell"
-version = "0.1.0"
+dynamic = ["version"]
 description = "GEOCELL is a modular geospatial indexing framework that unifies Tile, QuadKey, H3, and S2 under a single high-performance API."
 authors = [{ name = "tenacke", email = "emrekilic1010@gmail.com" }]
 license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = ["numpy>=2.3.5,<3.0.0", "pandas>=2.3.3,<3.0.0"]
+dependencies = [
+    "numpy>=2.3.5,<3.0.0",
+    "pandas>=2.3.3,<3.0.0",
+    "geopandas>=1.1.0,<2.0.0",
+]
 classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: GPL-v3 License",
-    "Operating System :: OS Independent",
+    "Operating System :: Apple :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
     "Topic :: Scientific/Engineering :: GIS",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
@@ -25,6 +31,7 @@ packages = [{ include = "geocell" }]
 python = ">=3.11"
 numpy = ">=2.3.5,<3.0.0"
 pandas = ">=2.3.3,<3.0.0"
+geopandas = ">=1.1.0,<2.0.0"
 
 [tool.poetry.group.dev.dependencies]
 cython = "^3.0.0"
@@ -37,3 +44,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = ["geocell"]
+package-dir = { "" = "src" }
+
+[tool.setuptools.dynamic]
+version = { file = "VERSION" }
