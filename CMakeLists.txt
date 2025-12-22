@@ -62,11 +62,10 @@ function(add_cython_extension module_name)
     
     # Platform-specific flags for Python extensions
     if(APPLE)
-        # macOS: Use bundle format for Python extensions
+        # macOS: Force bundle (MODULE) instead of dylib (SHARED)
         set_target_properties(${module_name} PROPERTIES
-            BUNDLE TRUE
-            MACOSX_BUNDLE TRUE
-            LINK_FLAGS "-bundle -undefined dynamic_lookup"
+            PREFIX ""
+            LINK_FLAGS "-bundle -flat_namespace -undefined suppress"
         )
     elseif(WIN32)
         # Windows: Python extensions are DLLs with .pyd extension
@@ -80,7 +79,9 @@ function(add_cython_extension module_name)
         )
     endif()
     
-    install(TARGETS ${module_name} DESTINATION geocell/_cython/h3)
+    install(TARGETS ${module_name} 
+            LIBRARY DESTINATION geocell/_cython/h3
+            COMPONENT python)
 endfunction()
 
 # Add all modules

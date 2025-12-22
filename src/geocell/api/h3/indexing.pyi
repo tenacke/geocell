@@ -11,7 +11,6 @@ def lat_lng_to_cell(
     lng: float,
     resolution: int,
 ) -> int: ...
-
 # Array overloads
 @overload
 def lat_lng_to_cell(
@@ -61,7 +60,6 @@ def lat_lng_to_cell(
 # Scalar overload
 @overload
 def cell_to_lat_lng(cells: int) -> Tuple[float, float]: ...
-
 # Array overload
 @overload
 def cell_to_lat_lng(
@@ -97,7 +95,6 @@ def cell_to_lat_lng(
 # Scalar overload
 @overload
 def cell_to_boundary(cells: int) -> NDArray[np.float64]: ...
-
 # Array overload
 @overload
 def cell_to_boundary(cells: ArrayLike) -> NDArray[np.float64]: ...

@@ -16,7 +16,7 @@ from .h3_api cimport (
 )
 
 
-def lat_lng_to_cell_vec(np.ndarray[np.double_t, ndim=1] lat, np.ndarray[np.double_t, ndim=1] lng, int res) -> H3int[:]: 
+def lat_lng_to_cell_vec(np.ndarray[np.double_t, ndim=1] lat, np.ndarray[np.double_t, ndim=1] lng, np.ndarray[np.int64_t, ndim=1] res) -> H3int[:]: 
     """
     Convert latitude and longitude (in degrees) arrays to an H3 cell index array at the specified resolution.
     """
@@ -35,7 +35,7 @@ def lat_lng_to_cell_vec(np.ndarray[np.double_t, ndim=1] lat, np.ndarray[np.doubl
         g.lat = degsToRads(lat[i])
         g.lng = degsToRads(lng[i])
 
-        err = latLngToCell(&g, res, &h)
+        err = latLngToCell(&g, res[i], &h)
         if err != 0:
             raise ValueError("Invalid latitude/longitude or resolution at index {}".format(i))
 
